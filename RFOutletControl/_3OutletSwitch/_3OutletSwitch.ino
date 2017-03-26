@@ -52,22 +52,22 @@ void loop(){
     selection = Serial.readString();
   }
   
-  if(selection=="1" && Switch1State == 0){
+  if(selection=="1\n" && Switch1State == 0){
     Serial.println("#1 On");
     sendSignal(on1,on1Size);
-  }else if(selection=="2" && Switch2State == 0){
+  }else if(selection=="2\n" && Switch2State == 0){
     Serial.println("#2 On");
     sendSignal(on2,on2Size);
-  }else if(selection=="3" && Switch3State == 0){
+  }else if(selection=="3\n" && Switch3State == 0){
     Serial.println("#3 On");
     sendSignal(on3,on3Size);
-  }else if(selection=="1" && Switch1State == 1){
+  }else if(selection=="1\n" && Switch1State == 1){
     Serial.println("#1 Off");
     sendSignal(off1,off1Size);
-  }else if(selection=="2" && Switch2State == 1){
+  }else if(selection=="2\n" && Switch2State == 1){
     Serial.println("#2 Off");
     sendSignal(off2,off2Size);
-  }else if(selection=="3" && Switch3State == 1){
+  }else if(selection=="3\n" && Switch3State == 1){
     Serial.println("#3 Off");
     sendSignal(off3,off3Size);  
   }
