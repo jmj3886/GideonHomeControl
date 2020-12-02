@@ -32,7 +32,6 @@ IRdecode IR_DECODER;
 
 void setup() {
     Serial.begin(9600);  
-    pinMode(RF_TRANSMITION_PIN, OUTPUT);
     delay(2000); while (!Serial);
 }
 
@@ -41,7 +40,8 @@ void loop() {
     String command = "";
     String protocol = "";
     uint16_t messageLength = 0;
-    Sting messageType = "";
+    String messageType = "";
+    uint16_t message[100];
     
     if(Serial.available()){
         //COMMAND MESSAGE = "<COMMAND> <PROTOCOL> <MESSAGE_LENGTH> <MESSAGE> <OPTIONAL_IR_MESSAGE_TYPE>"
@@ -51,12 +51,12 @@ void loop() {
         if(command == "SEND")
         {
             while(!Serial.available()){}
-            messageLength = toInt(Serial.readString());
-            byte message[messageLength];
+            messageLength = Serial.readString().toInt();
+            uint16_t message[messageLength];
             while(!Serial.available()){}
             for(int i = 0; i < messageLength; i++)
             {
-                messageLength[i] = (byte) strtol(Serial.readString().c_str());
+                message[i] = strtol(Serial.readString().c_str(), NULL, NULL);
             }
         }
     }
