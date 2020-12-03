@@ -32,6 +32,7 @@ IRdecode IR_DECODER;
 
 void setup() {
     Serial.begin(9600);  
+    RF_SENDER_RECEIVER.enableReceive(0);
     delay(2000); while (!Serial);
     Serial.println("Ready for Command:");
 }
@@ -98,9 +99,7 @@ void loop() {
             IR_RECEIVER.disableIRIn();
         }
         else if(protocol == "RF")
-        {
-            RF_SENDER_RECEIVER.enableReceive(0);
-            RF_SENDER_RECEIVER.resetAvailable();
+        {            
             if (!RF_SENDER_RECEIVER.available()){}           
             int value = RF_SENDER_RECEIVER.getReceivedValue();            
             if (value == 0)
@@ -118,7 +117,6 @@ void loop() {
                 Serial.println( RF_SENDER_RECEIVER.getReceivedProtocol() );    
             }
             RF_SENDER_RECEIVER.resetAvailable();
-            RF_SENDER_RECEIVER.disableReceive();
         }        
     }
     delay(500);
